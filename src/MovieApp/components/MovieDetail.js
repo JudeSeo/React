@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-function MovieDetail({id, coverImg, title, genres}) {
+function MovieDetail({coverImg, title, genres}) {
     return (
         <div>
             <h1>Detail {title}</h1>
