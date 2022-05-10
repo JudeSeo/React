@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './MovieApp/App';
+import movieApp from './MovieApp/App';
+import sandApp from './Sandbox/useInput';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <App />
+    <movieApp />
+);
+root.render(
+    <sandApp />
 );
