@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 
-import "./styles.css";
-
 const useNetwork = (onChange) => {
     const [status, setSatus] = useState(navigator.onLine);
     const handleChange = () => {
@@ -12,7 +10,7 @@ const useNetwork = (onChange) => {
     useEffect(() => {
         window.addEventListener("online", handleChange);
         window.addEventListener("offline", handleChange);
-        () => {
+        return () => {
             window.removeEventListener("online", handleChange);
             window.removeEventListener("offline", handleChange);
         };

@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 
-import "./styles.css";
-
 const App = () => {
     const potato = useRef();
     setTimeout(() => potato.current.focus(), 5000);

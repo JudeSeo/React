@@ -1,8 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import "./styles.css";
-
 const usePreventLeave = () => {
     const listener = (event) => {
         event.preventDefault();

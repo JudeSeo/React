@@ -1,10 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 
-import "./styles.css";
-
 const useFadeIn = (duration = 1, delay = 0) => {
-    if (typeof duration !== "number" || typeof delay !== "number") return;
     const element = useRef();
     useEffect(() => {
         if (element.current) {
@@ -13,6 +10,7 @@ const useFadeIn = (duration = 1, delay = 0) => {
             current.style.opacity = 1;
         }
     }, []);
+    if (typeof duration !== "number" || typeof delay !== "number") return;
     return { ref: element, style: { opacity: 0 } };
 };
 const App = () => {

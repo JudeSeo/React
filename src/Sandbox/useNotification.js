@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 
-import "./styles.css";
-
 const useNotification = (title, options) => {
     if (!"Notification" in window) return;
     const fireNotif = () => {

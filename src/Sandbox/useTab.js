@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
-import "./styles.css";
-
 const content = [
     {
         tab: "Section 1",
@@ -15,8 +13,8 @@ const content = [
 ];
 
 const useTabs = (initialTab, allTabs) => {
-    if (!allTabs || !Array.isArray(allTabs)) return;
     const [currentIndex, setCurrentIndex] = useState(initialTab);
+    if (!allTabs || !Array.isArray(allTabs)) return;
     return {
         currentItem: allTabs[currentIndex],
         changeItem: setCurrentIndex
@@ -28,7 +26,7 @@ const App = () => {
     return (
         <div className="App">
             {content.map((section, index) => (
-                <button onClick={() => changeItem(index)}>{section.tab}</button>
+                <button key={index} onClick={() => changeItem(index)}>{section.tab}</button>
             ))}
             <div>{currentItem.content}</div>
         </div>

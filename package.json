@@ -2,7 +2,7 @@
   "name": "react_test",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
+  "peerDependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
@@ -40,5 +40,21 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://JudeSeo.github.io/React"
+  "homepage": "https://JudeSeo.github.io/React",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JudeSeo/React.git"
+  },
+  "keywords": [
+    "react",
+    "reactHooks",
+    "hooks"
+  ],
+  "author": "Jude Seo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JudeSeo/React/issues"
+  }
 }

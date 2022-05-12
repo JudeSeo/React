@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 
-import "./styles.css";
-
 const useFullscreen = (callback) => {
     const element = useRef();
     const runCb = (isFull) => {
