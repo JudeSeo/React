@@ -1,18 +1,14 @@
-import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
-// import App from "./twitter/componments/App"
-import firebase from "./twitter/firebase";
-import AppRouter from "./twitter/components/Router";
-console.log(firebase);
+import React, {useState, useEffect} from "react";
+import ReactDOM from "react-dom/client";
+import App from "./twitter/components/App";
+import firebase from "./twitter/fBase";
 
-const App = () => {
-    return (
-        <div className="App">
-            <AppRouter />
-            <h1>Hi</h1>
-        </div>
-    );
-};
+const rootElement = document.getElementById('root');
+const root = ReactDOM.createRoot(rootElement);
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
+root.render(
+    <React.StrictMode>
+        <App/>
+    </React.StrictMode>
+);
+
