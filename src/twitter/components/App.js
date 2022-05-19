@@ -3,20 +3,23 @@ import AppRouter from "./Router"
 import {authService} from "../fBase";
 
 const App = () => {
-    const [init, setInit]=useState(false)
+    const [init, setInit] = useState(false)
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    useEffect(()=>{
-        authService.onAuthStateChanged((user)=> {
-            if (user)
+    const [userObj, setUserObj] = useState(null);
+    useEffect(() => {
+        authService.onAuthStateChanged((user) => {
+            if (user) {
                 setIsLoggedIn(true);
-            else
+                setUserObj(user);
+            } else {
                 setIsLoggedIn(false)
+            }
             setInit(true);
         })
     }, [])
     return (
         <>
-            {init?<AppRouter isLoggedIn={isLoggedIn}/>:"Initializing..."}
+            {init ? <AppRouter isLoggedIn={isLoggedIn} userObj={userObj}/> : "Initializing..."}
             <footer>&copy; twitter {new Date().getFullYear()}</footer>
         </>
     );

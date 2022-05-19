@@ -1,27 +1,25 @@
 import React, {useEffect, useState} from "react";
 import {dbService} from "../fBase";
 
-const Home = () => {
+const Home = ({userObj}) => {
     const [twit, setTwit] = useState("");
     const [twits, setTwits] = useState([]);
-    const getTwits = async () => {
-        const dbTwits = await dbService.collection("twit").get();
-        dbTwits.forEach(document => {
-            const twitObject = {
-                ...document.data(),
-                id: document.id,
-            }
-            setTwits(prev => [twitObject, ...prev])
-        });
-    }
     useEffect(() => {
-        getTwits();
-    }, [])
+        dbService.collection("twit").onSnapshot((snapshot)=>{
+            const twitArray = snapshot.docs.map((doc) => ({
+               id:doc.id,
+               ...doc.data()
+            }));
+            console.log(twitArray)
+            setTwits(twitArray);
+        });
+    }, []);
     const onSubmit = async (event) => {
         event.preventDefault();
         await dbService.collection("twit").add({
-            twit,
-            createdAt: Date.now()
+            text:twit,
+            createdAt: Date.now(),
+            creatorId:userObj.uid
         });
         setTwit("");
     }
@@ -38,8 +36,7 @@ const Home = () => {
             <div>
                 {twits.map(twit =>
                     <div key={twit.id}>
-                        <h4>{twit.twit}</h4>
-                    {/*    왜 두개씩 출력되는지 모르겠다... */}
+                        <h4>{twit.text}</h4>
                     </div>)}
             </div>
         </div>
