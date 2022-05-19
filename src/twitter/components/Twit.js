@@ -7,12 +7,12 @@ const Twit = ({twitObj, isOwner}) => {
     const onDeleteClick = async () => {
         const ok = window.confirm("Are you sure you want to delete this twit?");
         if (ok)
-            await dbService.doc(`twit/${twitObj.id}`).delete();
+            await dbService.doc(`twits/${twitObj.id}`).delete();
     }
     const toggleEditing = () => setEditing((prev) => !prev);
     const onSubmit = async (event) => {
         event.preventDefault()
-        await dbService.doc(`twit/${twitObj.id}`).update({text:newTwit})
+        await dbService.doc(`twits/${twitObj.id}`).update({text:newTwit})
         setEditing(false)
     }
     const onChange = (event) => {

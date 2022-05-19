@@ -6,7 +6,7 @@ const Home = ({userObj}) => {
     const [twit, setTwit] = useState("");
     const [twits, setTwits] = useState([]);
     useEffect(() => {
-        dbService.collection("twit").onSnapshot((snapshot) => {
+        dbService.collection("twits").onSnapshot((snapshot) => {
             const twitArray = snapshot.docs.map((doc) => ({
                 id: doc.id, ...doc.data()
             }));
@@ -15,7 +15,7 @@ const Home = ({userObj}) => {
     }, []);
     const onSubmit = async (event) => {
         event.preventDefault();
-        await dbService.collection("twit").add({
+        await dbService.collection("twits").add({
             text: twit, createdAt: Date.now(), creatorId: userObj.uid
         });
         setTwit("");
