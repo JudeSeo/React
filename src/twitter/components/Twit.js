@@ -12,19 +12,20 @@ const Twit = ({twitObj, isOwner}) => {
     const toggleEditing = () => setEditing((prev) => !prev);
     const onSubmit = async (event) => {
         event.preventDefault()
-        await dbService.doc(`twits/${twitObj.id}`).update({text:newTwit})
+        await dbService.doc(`twits/${twitObj.id}`).update({text: newTwit})
         setEditing(false)
     }
     const onChange = (event) => {
         const {
-            target: { value },
+            target: {value},
         } = event;
         setNewTwit(value)
     }
     return (<div>
         {editing ? (<>
-            <form onSubmit={onSubmit}><input type="text" placeholder="edit your twit" value={newTwit} onChange={onChange} required/>
-            <input type="submit" value="Update" /></form>
+            <form onSubmit={onSubmit}><input type="text" placeholder="edit your twit" value={newTwit}
+                                             onChange={onChange} required/>
+                <input type="submit" value="Update"/></form>
             <button onClick={toggleEditing}>Cancel</button>
         </>) : (<> <h4>{twitObj.text}</h4>
             {isOwner && (<>

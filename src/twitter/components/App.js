@@ -7,17 +7,14 @@ const App = () => {
     const [userObj, setUserObj] = useState(null);
     useEffect(() => {
         authService.onAuthStateChanged((user) => {
-            if (user)
-                setUserObj(user);
+            if (user) setUserObj(user);
             setInit(true);
         })
     }, [])
-    return (
-        <>
-            {init ? <AppRouter isLoggedIn={Boolean(userObj)} userObj={userObj}/> : "Initializing..."}
-            <footer>&copy; twitter {new Date().getFullYear()}</footer>
-        </>
-    );
+    return (<>
+        {init ? <AppRouter isLoggedIn={Boolean(userObj)} userObj={userObj}/> : "Initializing..."}
+        <footer>&copy; twitter {new Date().getFullYear()}</footer>
+    </>);
 }
 
 export default App;
