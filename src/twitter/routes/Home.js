@@ -28,6 +28,7 @@ const Home = ({userObj}) => {
         }
         await dbService.collection("twits").add(twitObj);
         setTwit("");
+        setAttachment("")
     }
     const onChange = event => {
         const {target: {value}} = event;
@@ -46,7 +47,7 @@ const Home = ({userObj}) => {
     const onClearAttachment = () => setAttachment("");
     return (<div>
         <form onSubmit={onSubmit}>
-            <input type="text" value={twit} onChange={onChange} placeholder="What's on your mind" maxLength={120}/>
+            <input type="text" value={twit} onChange={onChange} placeholder="What's on your mind" maxLength={120}/> <br/>
             <input type="file" accept="image/*" onChange={onFileChange}/>
             <input type="submit" value="Twit"/>
             {attachment && (<div>

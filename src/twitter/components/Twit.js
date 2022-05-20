@@ -1,13 +1,16 @@
 import React, {useState} from "react";
-import {dbService} from "../fBase";
+import { deleteObject, ref } from "@firebase/storage";
+import {dbService, storageService} from "../fBase";
 
 const Twit = ({twitObj, isOwner}) => {
     const [editing, setEditing] = useState(false);
     const [newTwit, setNewTwit] = useState(twitObj.text);
     const onDeleteClick = async () => {
         const ok = window.confirm("Are you sure you want to delete this twit?");
-        if (ok)
+        if (ok) {
             await dbService.doc(`twits/${twitObj.id}`).delete();
+            await deleteObject(ref(storageService, twitObj.attachmentUrl));
+        }
     }
     const toggleEditing = () => setEditing((prev) => !prev);
     const onSubmit = async (event) => {
