@@ -28,6 +28,7 @@ const Twit = ({twitObj, isOwner}) => {
                 <input type="submit" value="Update"/></form>
             <button onClick={toggleEditing}>Cancel</button>
         </>) : (<> <h4>{twitObj.text}</h4>
+            {twitObj.attachmentUrl && <img src={twitObj.attachmentUrl} width="50px" height="50px" />}
             {isOwner && (<>
                 <button onClick={onDeleteClick}>Delete Twit</button>
                 <button onClick={toggleEditing}>Edit Twit</button>
