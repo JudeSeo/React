@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import {authService, dbService} from "../fBase";
 import {useHistory} from "react-router-dom";
 
-const Profile = ({userObj}) => {
+const Profile = ({refreshUser, userObj}) => {
     const history = useHistory();
     const [newDisPalyName, setNewDisplayName] = useState(userObj.displayName)
     const onLogOutClick = () => {
@@ -20,6 +20,7 @@ const Profile = ({userObj}) => {
         if (userObj.displayName !== newDisPalyName) {
             const response = await userObj.updateProfile({displayName: newDisPalyName})
         }
+        refreshUser();
     }
     const getMyTwit = async () => {
         const twits = await dbService.collection("twits").where("creatorId", "==", userObj.uid).orderBy("createdAt", "desc").get();
