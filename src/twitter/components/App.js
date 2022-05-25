@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import AppRouter from "./Router"
 import {authService} from "../fBase";
+import styles from "../styles.css"
 
 const App = () => {
     const [init, setInit] = useState(false)
@@ -31,7 +32,7 @@ const App = () => {
     }
     return (<>
         {init ? <AppRouter isLoggedIn={Boolean(userObj)} userObj={userObj} refreshUser={refreshUser}/> : "Initializing..."}
-        <footer>&copy; twitter {new Date().getFullYear()}</footer>
+        {/*<footer>&copy; twitter {new Date().getFullYear()}</footer>*/}
     </>);
 }
 

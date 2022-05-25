@@ -1,6 +1,8 @@
 import React, {useState} from "react";
-import { deleteObject, ref } from "@firebase/storage";
+import {deleteObject, ref} from "@firebase/storage";
 import {dbService, storageService} from "../fBase";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faTrash, faPencilAlt} from "@fortawesome/free-solid-svg-icons";
 
 const Twit = ({twitObj, isOwner}) => {
     const [editing, setEditing] = useState(false);
@@ -24,20 +26,29 @@ const Twit = ({twitObj, isOwner}) => {
         } = event;
         setNewTwit(value)
     }
-    return (<div>
-        {editing ? (<>
-            <form onSubmit={onSubmit}><input type="text" placeholder="edit your twit" value={newTwit}
-                                             onChange={onChange} required/>
-                <input type="submit" value="Update"/></form>
-            <button onClick={toggleEditing}>Cancel</button>
-        </>) : (<> <h4>{twitObj.text}</h4>
-            {twitObj.attachmentUrl && <img src={twitObj.attachmentUrl} width="50px" height="50px" />}
-            {isOwner && (<>
-                <button onClick={onDeleteClick}>Delete Twit</button>
-                <button onClick={toggleEditing}>Edit Twit</button>
+    return (
+        <div className="twit">
+            {editing ? (<>
+                <form onSubmit={onSubmit} className="container twitEdit">
+                    <input type="text" placeholder="edit your twit" value={newTwit} onChange={onChange} required/>
+                    <input type="submit" value="Update" className="formBtn"/></form>
+                <span onClick={toggleEditing} className="formBtn cancelBtn">
+            Cancel
+          </span>
+            </>) : (<> <h4>{twitObj.text}</h4>
+                {twitObj.attachmentUrl && <img src={twitObj.attachmentUrl}/>}
+                {isOwner && (
+                    <div className="twit__actions">
+                    <span onClick={onDeleteClick}>
+                <FontAwesomeIcon icon={faTrash}/>
+              </span>
+                        <span onClick={toggleEditing}>
+                <FontAwesomeIcon icon={faPencilAlt}/>
+              </span>
+                    </div>
+                )}
             </>)}
-        </>)}
-    </div>)
+        </div>)
 }
 
 export default Twit;

@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from "react";
 import {authService, dbService} from "../fBase";
 import {useHistory} from "react-router-dom";
+import styles from "../styles.css"
 
 const Profile = ({refreshUser, userObj}) => {
     const history = useHistory();
-    const [newDisPalyName, setNewDisplayName] = useState(userObj.displayName)
+    const [newDisplayName, setNewDisplayName] = useState(userObj.displayName)
     const onLogOutClick = () => {
         authService.signOut();
         history.push("/")
@@ -17,8 +18,8 @@ const Profile = ({refreshUser, userObj}) => {
     }
     const onSubmit = async (event) => {
         event.preventDefault();
-        if (userObj.displayName !== newDisPalyName) {
-            const response = await userObj.updateProfile({displayName: newDisPalyName})
+        if (userObj.displayName !== newDisplayName) {
+            const response = await userObj.updateProfile({displayName: newDisplayName})
         }
         refreshUser();
     }
@@ -29,12 +30,22 @@ const Profile = ({refreshUser, userObj}) => {
     useEffect(() => {
         getMyTwit();
     }, [])
-    return (<>
-        <form onSubmit={onSubmit}>
-            <input type="text" placeholder="Display name" onChange={onChange}/>
-            <input type="submit" value="Update profile"/>
+    return (
+        <div className="container">
+            <form onSubmit={onSubmit} className="profileForm">
+            <input type="text" autoFocus placeholder="Display name" onChange={onChange} value={newDisplayName} className="formInput"
+            />
+                <input
+                    type="submit"
+                    value="Update Profile"
+                    className="formBtn"
+                    style={{
+                        marginTop: 10,
+                    }} />
         </form>
-        <button onClick={onLogOutClick}>Log Out</button>
-    </>)
+            <span className="formBtn cancelBtn logOut" onClick={onLogOutClick}>
+        Log Out
+      </span>
+        </div>)
 }
 export default Profile
