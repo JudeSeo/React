@@ -1,7 +1,7 @@
 import React, {Component, useState} from "react";
 import {Button, Fade} from "reactstrap";
 
-const ReactstrapCollapse = () => {
+const ReactstrapFade = () => {
     const [fadeInOut, setFadeInOut] = useState(true);
     const toggle = () => {
         setFadeInOut(!fadeInOut);
@@ -11,4 +11,4 @@ const ReactstrapCollapse = () => {
         <Fade in={fadeInOut} tag="h1">Lorem ipsum sit amet, consectetur adipiscing elit</Fade>
     </div>)
 }
-export default ReactstrapCollapse;
+export default ReactstrapFade;
